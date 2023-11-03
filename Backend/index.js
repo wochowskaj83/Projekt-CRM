@@ -1,6 +1,5 @@
 const config = require('./config')
 const express = require('express')
-const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 const mongoUrl = `mongodb://${config.db.host}:${config.db.port}/${config.db.name}`
@@ -14,18 +13,19 @@ mongoose
         throw err
     })
 
-const userRouter = require('./app/router/userRouter')
 
-
-
+const app = express()
+app.use(express.json())
 app.use(cors())
+
+const userRoutes = require('./app/routes/UserRoutes')
+app.use("/user", userRoutes);
+
 
 app.get('/', (req, res) => {
         res.render("home")
 });
 
-
-app.use("/user", userRouter);
 
 app.listen(config.app.port, () => {
     console.log('serwer Node.js działa');
