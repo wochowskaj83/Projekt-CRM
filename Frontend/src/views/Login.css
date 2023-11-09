@@ -5,6 +5,8 @@
     margin-top: 100px;
     background: #fff;
     padding-bottom: 30px;
+    border: 1px solid black;
+    border-radius: 50px;
 }
 
 .header{
@@ -64,6 +66,7 @@
 
 .submit{
     display: flex;
+    margin: auto;
     justify-content: center;
     align-items: center;
     width: 220px;

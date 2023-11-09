@@ -1,6 +1,6 @@
 module.exports = {
     app: {
-        port:5050
+        port:3005
     },
 
     db: {
