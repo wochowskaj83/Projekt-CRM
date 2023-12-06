@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import './Signup.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 
     const [formData, setFormData] = useState({
-        username: "",
+        name:"",
         email: "",
         password: ""
     })
 
+    const navigate = useNavigate()
     
 
     const handleInputChange = (e) => {
@@ -32,6 +34,7 @@ const Signup = () => {
             })
             .then((res) => {
                 console.log(res.data)
+                navigate("/login")
 
             })
             .catch((error) => {
@@ -47,11 +50,10 @@ const Signup = () => {
                     <div className="text">Sign Up</div>
                     <div className="underline"></div>
                 </div>
-                <div className="inputs">
-                    <div className="input">
-                        <input type="text" name="name" placeholder="Name" onChange={handleInputChange} />
+                <div className="inputs"> 
+                <div className="input">
+                        <input type="name" name="name" placeholder="Username" onChange={handleInputChange} />
                     </div>
-                    {/*  {errors.username && <p>{errors.username}</p>} */}
                     <div className="input">
                         <input type="email" name="email" placeholder="Email" onChange={handleInputChange} />
                     </div>

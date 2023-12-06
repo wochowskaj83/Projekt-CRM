@@ -23,10 +23,8 @@ app.use(cookieParser())
 const userRoutes = require('./app/routes/UserRoutes')
 app.use("/user", userRoutes);
 
-
-app.get('/', (req, res) => {
-        res.render("home")
-});
+const customerRoutes = require('./app/routes/CustomerRoutes')
+app.use("/customer", customerRoutes);
 
 
 app.listen(config.app.port, () => {

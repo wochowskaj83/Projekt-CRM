@@ -87,3 +87,8 @@
     font-weight: 700;
     cursor: pointer
 }
+
+.submit:hover{
+    background: #8535f5;
+    opacity: 0,5;
+}

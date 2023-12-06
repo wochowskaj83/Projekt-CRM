@@ -3,11 +3,34 @@ const bcrypt = require("bcrypt");
 
 module.exports = {
     create: (req, res) => {
-        const newUser = new User(req.body)
-        console.log(newUser)
-        newUser.save({ new: true })
-        res.json(newUser)
-        return res.status(200)
+
+        User.findOne({ email: req.body.email })
+            .then((response) => {
+                console.log("user" + response)
+
+                if (response) {
+                    res.json({
+                        error: true,
+                        message: 'User already exists'
+                    })
+                    return
+                }
+                // const newUser = new User(req.body)
+                // console.log(req)
+                // newUser.save({ new: true })
+                //     .then((response) => {
+                //         console.log(response)
+                //         res.json(response)
+                //         return res.status(200)
+                //     })
+                //     .catch((error) => {
+                //         console.error(error);
+                //     })
+
+            })
+
+
+
     },
     login: (req, res) => {
         User.findOne({ email: req.body.email })
@@ -24,7 +47,7 @@ module.exports = {
 
                 if (bcrypt.compareSync(req.body.password, user.password)) {
                     const token = user.generateAuthToken(user);
-                    res.status(200).send(token);
+                    res.status(200).send(user);
                     console.log("User logged in")
                 } else {
                     res.status(401).send({
