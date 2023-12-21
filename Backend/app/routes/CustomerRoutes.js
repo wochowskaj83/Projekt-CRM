@@ -6,6 +6,7 @@ const CustomerIdController = require('../controllers/CustomerIdController');
 
 router.get('/list', CustomersController.index);
 router.get('/id/:id', CustomerIdController.post);
+router.post('/addcustomer', CustomersController.create);
 
 
 module.exports = router;

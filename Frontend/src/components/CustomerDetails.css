@@ -1,7 +1,10 @@
-.customers table {
+.customer table *{
     max-width: 600px;
     margin: auto;
     border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    border-spacing: 3px;
 }
 
 .findCustomerForm {

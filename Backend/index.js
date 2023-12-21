@@ -26,6 +26,9 @@ app.use("/user", userRoutes);
 const customerRoutes = require('./app/routes/CustomerRoutes')
 app.use("/customer", customerRoutes);
 
+const customerActionsRoutes = require('./app/routes/CustomerActionsRoutes')
+app.use("/actions", customerActionsRoutes);
+
 
 app.listen(config.app.port, () => {
     console.log('serwer Node.js działa');

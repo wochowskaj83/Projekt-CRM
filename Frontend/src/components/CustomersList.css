@@ -1,0 +1,40 @@
+.customers table * {
+    max-width: 600px;
+    margin: auto;
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    border-spacing: 3px;
+}
+
+.findCustomerForm {
+    max-width: 600px;
+    margin: auto;
+    padding: 5px;
+    border: 1px solid black;
+    text-align: right;
+}
+
+.findCustomerForm textarea {
+    width: 98%;
+    padding: 5px;
+    resize: vertical;
+}
+
+.btn {
+    background-color: #1d9bf0;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.btn:hover {
+    background-color: #00538a;
+    cursor: pointer;
+}

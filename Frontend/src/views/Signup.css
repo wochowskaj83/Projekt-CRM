@@ -92,3 +92,8 @@
     background: #8535f5;
     opacity: 0,5;
 }
+
+.submit:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}

@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import './CustomerList.css';
+import './CustomersList.css';
+import { Link } from "react-router-dom";
 
 
 
-const CustomersList = () => {
+const CustomersList = (props) => {
+
+
     const [customers, setCustomers] = useState([]);
 
     const allCustomers = () => {
@@ -25,12 +28,14 @@ const CustomersList = () => {
     }, [])
 
 
+
     return (
         <>  <div>
-                <form className="findCustomerForm">
-                <textarea placeholder="Find customer by id..."></textarea>
+            <form className="findCustomerForm">
+                <textarea placeholder="Find customer..."></textarea>
                 <button className="btn">Search</button>
-                </form>
+                <Link to={`/customer/addcustomer`} className="btn">Add</Link>
+            </form>
             </div>
             <div className="customers table">
                 <table className="table table-bordered">
@@ -40,16 +45,19 @@ const CustomersList = () => {
                             <th scope="col">Company</th>
                             <th scope="col">Name</th>
                             <th scope="col">Nip</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {customers.map((customer) => {
+                            // console.log(customers)
                             return (
                                 <tr key={customer._id}>
                                     <td> {customer.address.street} {customer.address.zipcode} {customer.address.city} </td>
                                     <td>{customer.company}</td>
                                     <td>{customer.name}</td>
                                     <td>{customer.nip}</td>
+                                    <td><Link to={`/customer/${customer._id}`} className="btn">Details</Link></td>
                                 </tr>
                             );
 

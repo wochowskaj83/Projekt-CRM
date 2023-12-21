@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const Customer = new Schema(
     {
-        adress: Object,
+        address: Object,
         company: String,
         name: String,
         nip: String,
