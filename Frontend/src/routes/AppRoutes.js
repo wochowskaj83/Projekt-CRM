@@ -14,10 +14,11 @@ const AppRoutes = (props) => {
             <Route path="/" element={<Home user={props.user}/>} />
             <Route path="/signup" element={<Signup user={props.user}/>} />
             <Route path="/login" element={<Login user={props.user} setUser={props.setUser}/>} />
-            <Route path="/customer/list" element={<CustomersList />} />
-            <Route path="/customer/:id" element={<CustomerDetails />} />
-            <Route path="/customer/addcustomer" element={<AddCustomer />} />
+            <Route path="/customer/list" element={<CustomersList customer={props.customer} customers={props.customers}/>} />
+            <Route path="/customer/:id" element={<CustomerDetails customer={props.customer}/>} />
+            <Route path="/customer/addcustomer" element={<AddCustomer allCustomers={props.allCustomers}/>} />
             <Route path="/customer/:id/add" element={<AddAction />} />
+            <Route path="/customer/delete/:id" />
         </Routes>
 
     );

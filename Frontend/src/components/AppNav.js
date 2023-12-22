@@ -7,6 +7,7 @@ const AppNav = (props) => {
 
     const handleLogout = (e) => {
         e.preventDefault();
+        
 
         axios
             .post("https://localhost:3005/")

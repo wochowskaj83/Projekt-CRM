@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import './AddAction.css'
+// import './AddAction.css'
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+
 
 const AddAction = (props) => {
     
+    const navigate = useNavigate()
     const { id } = useParams()
 
     const [formData, setFormData] = useState({
@@ -18,9 +20,10 @@ const AddAction = (props) => {
         const target = e.target;
         const name = target.name;
 
-        setFormData({
-            ...formData,
-            [name]: target.value,
+        setFormData((prevDataForm) => {
+            return{
+            ...prevDataForm,
+            [name]: target.value};
         });
     };
 
@@ -37,8 +40,8 @@ const AddAction = (props) => {
                 customerId: formData.customerId
             })
             .then((res) => {
-                console.log(res.data)
-
+                setFormData(res.data)
+                navigate(`/customer/${id}`)
 
             })
             .catch((error) => {

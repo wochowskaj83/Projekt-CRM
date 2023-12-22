@@ -17,8 +17,10 @@ module.exports = {
     },
 
     getActions: (req, res) => {
+        console.log(req)
         ActionModel.find({ customerId: req.params.id })
             .then((actionsRes) => {
+                
                 return res.json(actionsRes)
             })
            

@@ -44,4 +44,19 @@ module.exports = {
                 console.error(error);
             })
     },
+    
+    delete: (req, res) => {
+        const id = req.params.id
+        Customer.findByIdAndDelete(req.params.id)
+            .then(response => {
+                return res.status(204).json({
+                    id: id,
+                    deleted: true
+                })
+            })
+            .catch(err => {
+                return res.status(500).json({ error: err });
+            })
+
+    },
 }

@@ -2,7 +2,8 @@ import { useState } from 'react';
 import './AddCustomer.css'
 import axios from 'axios';
 
-const AddCustomer = () => {
+const AddCustomer = (props) => {
+
 
     const [customerData, setCustomerData] = useState({
         city: "",
@@ -39,10 +40,10 @@ const AddCustomer = () => {
 
             })
             .then((res) => {
-                console.log(res.data)
-
-
+                props.allCustomers()
             })
+
+
             .catch((error) => {
                 console.error(error);
             });

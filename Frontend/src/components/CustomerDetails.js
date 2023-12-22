@@ -10,8 +10,8 @@ const CustomerDetails = (props) => {
 
     const { id } = useParams()
 
-  
-    const [clientDetails, setClientDetails] = useState([])
+
+    const [clientDetails, setClientDetails] = useState({})
     const [clientActions, setClientActions] = useState([])
 
     const getActions = () => {
@@ -19,6 +19,7 @@ const CustomerDetails = (props) => {
             .get(`http://localhost:3005/actions/${id}/actions`)
             .then((res) => {
                 setClientActions(res.data)
+                console.log(res.data)
             })
     }
 
@@ -27,21 +28,25 @@ const CustomerDetails = (props) => {
             .get(`http://localhost:3005/customer/id/${id}`)
             .then((res) => {
                 setClientDetails(res.data)
+                console.log(res.data)
+
             })
     }
 
     useEffect(() => {
-        getActions();
         getDetails();
-
+        getActions();
+        console.log(clientDetails)
     }, [])
 
+    console.log(clientDetails.address.city)
     return (
         <>
             <div className="customer">
                 <table className="table table-bordered">
                     <thead className="thead-dark">
                         <tr>
+                            <th scope="col">Id</th>
                             <th scope="col">Address</th>
                             <th scope="col">Company</th>
                             <th scope="col">Name </th>
@@ -50,18 +55,10 @@ const CustomerDetails = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {clientDetails.map((clientDetail) => {
-                            // console.log(clientDetail)
-                            return (
-                                <tr key={`${id}`}>
-                                    <td>{clientDetail.address.street} {clientDetail.address.zipcode} {clientDetail.address.city} </td>
-                                    <td>{clientDetail.company}</td>
-                                    <td>{clientDetail.name}</td>
-                                    <td>{clientDetail.nip}</td>
-                                </tr>
-                            );
-
-                        })}
+                        <tr>
+                            <td>{id}</td>
+                            {clientDetails && (<><td>{clientDetails.address.city}</td><td>{clientDetails.company}</td><td>{clientDetails.name}</td><td>{clientDetails.nip}</td></>)}
+                        </tr>
                     </tbody>
                 </table>
                 <table className="table table-bordered">
@@ -76,7 +73,7 @@ const CustomerDetails = (props) => {
                         {clientActions.map((clientAction) => {
                             // console.log(clientActions)
                             return (
-                                <tr key={`${id}`}>
+                                <tr key={id}>
                                     <td>{clientAction.type}</td>
                                     <td>{clientAction.date}</td>
                                     <td>{clientAction.description}</td>

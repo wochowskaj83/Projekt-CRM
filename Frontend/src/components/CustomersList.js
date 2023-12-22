@@ -8,27 +8,27 @@ import { Link } from "react-router-dom";
 const CustomersList = (props) => {
 
 
-    const [customers, setCustomers] = useState([]);
+    
 
-    const allCustomers = () => {
+    // const removeCustomer = (id) => {
+    //     if (window.confirm('Usunąć klienta?')) {
+    //         axios
+    //         .delete(`http://localhost:3005/customer/delete/${id}`)
+    //         .then((res)=>{
+    //         console.log(res.data)
+    //         })
+    //         .catch((err)=>{
+    //             console.error(err)
 
-        axios
-            .get("http://localhost:3005/customer/list")
-            .then((res) => {
-                setCustomers(res.data)
-            })
-            .catch((err) => {
-                console.error(err);
-            })
+    //         })
+    //     }
+    //     // const filteredCustomers=customers.filter(customer=>customer.id !==id)
+    //     // setCustomers(filteredCustomers)
+      
+    // };
 
-    };
-
-    useEffect(() => {
-        allCustomers();
-    }, [])
-
-
-
+   
+    
     return (
         <>  <div>
             <form className="findCustomerForm">
@@ -41,6 +41,7 @@ const CustomersList = (props) => {
                 <table className="table table-bordered">
                     <thead className="thead-dark">
                         <tr>
+                            <th scope="col">Id</th>
                             <th scope="col">Address</th>
                             <th scope="col">Company</th>
                             <th scope="col">Name</th>
@@ -49,15 +50,18 @@ const CustomersList = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {customers.map((customer) => {
+                        {props.customers.map((customer) => {
                             // console.log(customers)
                             return (
-                                <tr key={customer._id}>
+                                <tr key={customer._id} >
+                                    <td>{customer._id}</td>
                                     <td> {customer.address.street} {customer.address.zipcode} {customer.address.city} </td>
                                     <td>{customer.company}</td>
                                     <td>{customer.name}</td>
                                     <td>{customer.nip}</td>
-                                    <td><Link to={`/customer/${customer._id}`} className="btn">Details</Link></td>
+                                    <td><Link to={`/customer/${customer._id}`} className="btn">Details</Link>
+                                    {/* <button className="btn" onClick={()=>removeCustomer(customer._id)}>Delete</button> */}
+                                    </td>
                                 </tr>
                             );
 
