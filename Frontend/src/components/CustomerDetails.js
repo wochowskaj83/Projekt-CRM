@@ -39,7 +39,7 @@ const CustomerDetails = (props) => {
         console.log(clientDetails)
     }, [])
 
-    console.log(clientDetails.address.city)
+    console.log(clientDetails)
     return (
         <>
             <div className="customer">
@@ -57,7 +57,10 @@ const CustomerDetails = (props) => {
                     <tbody>
                         <tr>
                             <td>{id}</td>
-                            {clientDetails && (<><td>{clientDetails.address.city}</td><td>{clientDetails.company}</td><td>{clientDetails.name}</td><td>{clientDetails.nip}</td></>)}
+                          <td>{clientDetails.city}</td>
+                          <td>{clientDetails.company}</td>
+                          <td>{clientDetails.name}</td>
+                          <td>{clientDetails.nip}</td>
                         </tr>
                     </tbody>
                 </table>

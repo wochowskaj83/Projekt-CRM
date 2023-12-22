@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import './AddCustomer.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddCustomer = (props) => {
+
+    const navigate = useNavigate()
 
 
     const [customerData, setCustomerData] = useState({
@@ -41,6 +44,7 @@ const AddCustomer = (props) => {
             })
             .then((res) => {
                 props.allCustomers()
+                navigate("customer/list")
             })
 
 
