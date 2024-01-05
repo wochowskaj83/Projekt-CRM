@@ -6,37 +6,55 @@ import { Link } from "react-router-dom";
 
 
 const CustomersList = (props) => {
+    const [searchPhrase, setSearchPhrase] = useState('');
+    const [filteredCustomers, setFilteredCustomers] = useState([]);
 
 
-    
+    const filterCustomerList = () => {
 
-    // const removeCustomer = (id) => {
-    //     if (window.confirm('Usunąć klienta?')) {
-    //         axios
-    //         .delete(`http://localhost:3005/customer/delete/${id}`)
-    //         .then((res)=>{
-    //         console.log(res.data)
-    //         })
-    //         .catch((err)=>{
-    //             console.error(err)
+        let newList = props.customers.filter((customer) => {
+            return customer.name.toLowerCase().includes(searchPhrase)
+        })
 
-    //         })
-    //     }
-    //     // const filteredCustomers=customers.filter(customer=>customer.id !==id)
-    //     // setCustomers(filteredCustomers)
-      
-    // };
+        setFilteredCustomers(newList);
+    }
 
-   
-    
+
+    useEffect(() => {
+        filterCustomerList()
+    }, [searchPhrase]);
+
+
+    useEffect(() => {
+        setFilteredCustomers(props.customers)
+    }, [props.customers]);
+
+
+
+
+    const removeCustomer = (id) => {
+        if (window.confirm('Usunąć klienta?')) {
+            axios
+                .delete(`http://localhost:3005/customer/delete/${id}`)
+                .then((res) => {
+                    props.allCustomers()
+                })
+                .catch((err) => {
+                    console.error(err)
+
+                })
+        }
+
+    };
+
+
     return (
         <>  <div>
             <form className="findCustomerForm">
-                <textarea placeholder="Find customer..."></textarea>
-                <button className="btn">Search</button>
+                <textarea placeholder="Find customer..." onChange={(e) => setSearchPhrase(e.target.value)}></textarea>
                 <Link to={`/customer/addcustomer`} className="btn">Add</Link>
             </form>
-            </div>
+        </div>
             <div className="customers table">
                 <table className="table table-bordered">
                     <thead className="thead-dark">
@@ -50,8 +68,7 @@ const CustomersList = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {props.customers.map((customer) => {
-                            // console.log(customers)
+                        {filteredCustomers.map((customer) => {
                             return (
                                 <tr key={customer._id} >
                                     <td>{customer._id}</td>
@@ -59,8 +76,8 @@ const CustomersList = (props) => {
                                     <td>{customer.company}</td>
                                     <td>{customer.name}</td>
                                     <td>{customer.nip}</td>
-                                    <td><Link to={`/customer/${customer._id}`} className="btn">Details</Link>
-                                    {/* <button className="btn" onClick={()=>removeCustomer(customer._id)}>Delete</button> */}
+                                    <td><Link to={`/customer/${customer._id}`} className="knob">Details</Link>
+                                        <button className="knob" onClick={() => removeCustomer(customer._id)}>Delete</button>
                                     </td>
                                 </tr>
                             );

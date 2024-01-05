@@ -48,7 +48,6 @@ const Login = (props) => {
             }
 
             console.log(res.data)
-            // props.setUser(res.data)
             
         })
         .catch((error)=> {

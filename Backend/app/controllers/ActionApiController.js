@@ -11,19 +11,16 @@ module.exports = {
 
         newAction.save()
         .then((addActionRes)=>{
-            // console.log(addActionRes)
             return res.json(newAction)
         })
     },
 
     getActions: (req, res) => {
-        console.log(req)
-        ActionModel.find({ customerId: req.params.id })
+        ActionModel.find({ clientId: req.params.id })
             .then((actionsRes) => {
                 
                 return res.json(actionsRes)
-            })
-           
+            }) 
     }
 }
 

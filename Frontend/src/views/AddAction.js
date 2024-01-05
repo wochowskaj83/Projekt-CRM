@@ -52,7 +52,7 @@ const AddAction = (props) => {
 
 
     return (
-        <div className='addAction container'>
+        <div className="addAction">
             <form className="addActionData" onSubmit={handleSubmit}>
                 <h1>New action</h1>
                 <label>Action type

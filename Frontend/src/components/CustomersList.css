@@ -1,15 +1,14 @@
 .customers table * {
-    max-width: 600px;
     margin: auto;
     border: 1px solid black;
     padding: 8px;
-    text-align: left;
-    border-spacing: 3px;
+    border-spacing: 5px;
+    max-width: 600px;
 }
+
 
 .findCustomerForm {
     max-width: 600px;
-    margin: auto;
     padding: 5px;
     border: 1px solid black;
     text-align: right;
@@ -22,10 +21,10 @@
 }
 
 .btn {
-    background-color: #1d9bf0;
+    background-color: #4c00b4;
     cursor: pointer;
     padding: 10px;
-    border: none;
+    border: solid;
     border-radius: 15px;
     color: white;
     text-decoration: none;
@@ -35,6 +34,22 @@
 }
 
 .btn:hover {
+    background-color: #00538a;
+    cursor: pointer;
+}
+
+.knob {
+    background-color: #4c00b4;
+    cursor: pointer;
+    border-radius: 15px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 11px;
+    margin: auto;
+}
+
+.knob:hover {
     background-color: #00538a;
     cursor: pointer;
 }

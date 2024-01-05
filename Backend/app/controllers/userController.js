@@ -6,7 +6,6 @@ module.exports = {
 
         User.findOne({ email: req.body.email })
             .then((response) => {
-                console.log("user" + response)
 
                 if (response) {
                     return res.json({
@@ -19,7 +18,6 @@ module.exports = {
 
         User.findOne({ name: req.body.username })
             .then((response) => {
-                console.log("user" + response)
 
                 if (response) {
                     return res.json({
@@ -30,10 +28,8 @@ module.exports = {
             })
 
         const newUser = new User(req.body)
-        console.log(req)
         newUser.save({ new: true })
             .then((response) => {
-                console.log(response)
                 res.json(response)
                 return res.status(200)
             })

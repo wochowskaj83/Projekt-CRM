@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const AddCustomer = (props) => {
-
     const navigate = useNavigate()
 
 
@@ -44,7 +43,8 @@ const AddCustomer = (props) => {
             })
             .then((res) => {
                 props.allCustomers()
-                navigate("customer/list")
+                navigate(`/customer/list`)
+
             })
 
 
@@ -56,7 +56,7 @@ const AddCustomer = (props) => {
 
 
     return (
-        <div className='addCustomer container'>
+        <div className="addCustomer container">
             <form className="addCustomerData" onSubmit={handleSubmit}>
                 <h1>Create new customer</h1>
                 <label>Name

@@ -1,13 +1,10 @@
-const Customers = require('../models/CustomerModel');
 const Customer = require('../models/CustomerModel');
 
 module.exports = {
     index: (req, res) => {
-        Customers.find({})
+        Customer.find({})
             .lean()
             .then((customers) => {
-                console.log(customers)
-                // res.render('tableViews/table', {customers: customers});
 
                 return res.json(customers)
             }).catch((err) => {
@@ -19,7 +16,6 @@ module.exports = {
 
         Customer.findOne({ name: req.body.name })
             .then((response) => {
-                console.log("customer" + response)
 
                 if (response) {
                     res.json({
@@ -28,23 +24,22 @@ module.exports = {
                     })
                     return
 
+                } else {
+
+                    const newCustomer = new Customer(req.body)
+                    newCustomer.save({ new: true })
+                        .then((response) => {
+                            res.json(response)
+                            res.status(200)
+                            return
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        })
                 }
             })
-
-        const newCustomer = new Customer(req.body)
-        console.log(req)
-        newCustomer.save({ new: true })
-            .then((response) => {
-                console.log(response)
-                res.json(response)
-                res.status(200)
-                return
-            })
-            .catch((error) => {
-                console.error(error);
-            })
     },
-    
+
     delete: (req, res) => {
         const id = req.params.id
         Customer.findByIdAndDelete(req.params.id)
